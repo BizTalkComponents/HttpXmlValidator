@@ -14,22 +14,13 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
     [ComponentCategory(CategoryTypes.CATID_Validate)]
     public partial class HttpXmlValidator : IComponent, IBaseComponent, IComponentUI, IPersistPropertyBag
     {
-        private const string DocumentSpecNamesPropertyName = "DocumentSpecNames";
         private const string RecoverableInterchangeProcessingPropertyName = "RecoverableInterchangeProcessing";
 
-        public SchemaList DocumentSpecNames { get; set; }
         public bool RecoverableInterchangeProcessing { get; set; }
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
         {
-            var validator = new XmlValidator();
-            
-            if (DocumentSpecNames != null)
-            {
-                validator.DocSpecNames = DocumentSpecNames;
-            }
-
-            validator.RecoverableInterchangeProcessing = RecoverableInterchangeProcessing;
+            var validator = new XmlValidator {RecoverableInterchangeProcessing = RecoverableInterchangeProcessing};
 
             try
             {
@@ -66,13 +57,6 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 
         public void Load(IPropertyBag propertyBag, int errorLog)
         {
-            var documentSpecNames = PropertyBagHelper.ReadPropertyBag(propertyBag, DocumentSpecNamesPropertyName);
-
-            if (documentSpecNames != null)
-            {
-                DocumentSpecNames = (SchemaList) documentSpecNames;
-            }
-
             var recoverableInterchangeProcessing = PropertyBagHelper.ReadPropertyBag(propertyBag, RecoverableInterchangeProcessingPropertyName);
 
             if (recoverableInterchangeProcessing != null)
@@ -83,7 +67,6 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 
         public void Save(IPropertyBag propertyBag, bool clearDirty, bool saveAllProperties)
         {
-            PropertyBagHelper.WritePropertyBag(propertyBag, DocumentSpecNamesPropertyName, DocumentSpecNames);
             PropertyBagHelper.WritePropertyBag(propertyBag, RecoverableInterchangeProcessingPropertyName, RecoverableInterchangeProcessing);
         }
     }
