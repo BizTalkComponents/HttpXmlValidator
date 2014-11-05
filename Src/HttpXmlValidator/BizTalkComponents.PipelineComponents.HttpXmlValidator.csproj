@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BizTalkComponents.HttpXmlValidator.snk" />
+    <None Include="BizTalkComponents.PipelineComponents.HttpXmlValidator.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
