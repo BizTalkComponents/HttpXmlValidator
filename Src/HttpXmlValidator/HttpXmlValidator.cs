@@ -27,8 +27,8 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
             }
             catch (XmlValidatorException ex)
             {
-                pInMsg.Context.Write(new ContextProperty(SystemProperties.RouteDirectToTP), "true");
-                pInMsg.Context.Promote(new ContextProperty(WCFProperties.OutboundHttpStatusCode),"400");
+                pInMsg.Context.Promote(new ContextProperty(SystemProperties.RouteDirectToTP), true);
+                pInMsg.Context.Write(new ContextProperty(WCFProperties.OutboundHttpStatusCode),"400");
 
                 var ms = new MemoryStream();
                 var sw = new StreamWriter(ms);
