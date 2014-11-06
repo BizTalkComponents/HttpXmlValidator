@@ -1,10 +1,9 @@
 ﻿using System.IO;
 using System.Text;
-using BizTalkComponents.Utils.ContextPropertyHelpers;
-using BizTalkComponents.Utils.PropertyBagHelpers;
+using BizTalkComponents.Utils;
+using BizTalkComponents.Utils.ContextExtensions;
 using Microsoft.BizTalk.Component;
 using Microsoft.BizTalk.Component.Interop;
-using Microsoft.BizTalk.Component.Utilities;
 using Microsoft.BizTalk.Message.Interop;
 
 namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
