@@ -5,6 +5,7 @@ using BizTalkComponents.Utils.ContextExtensions;
 using Microsoft.BizTalk.Component;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
+using Microsoft.BizTalk.Streaming;
 
 namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 {
@@ -19,16 +20,16 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
         {
-            var validator = new XmlValidator {RecoverableInterchangeProcessing = RecoverableInterchangeProcessing};
+            var validator = new XmlValidator { RecoverableInterchangeProcessing = RecoverableInterchangeProcessing };
 
             try
             {
-                validator.Execute(pContext, pInMsg);
+                pInMsg = validator.Execute(pContext, pInMsg);
             }
             catch (XmlValidatorException ex)
             {
                 pInMsg.Context.Promote(new ContextProperty(SystemProperties.RouteDirectToTP), true);
-                pInMsg.Context.Write(new ContextProperty(WCFProperties.OutboundHttpStatusCode),"400");
+                pInMsg.Context.Write(new ContextProperty(WCFProperties.OutboundHttpStatusCode), "400");
 
                 var ms = new MemoryStream();
                 var sw = new StreamWriter(ms);
