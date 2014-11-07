@@ -38,8 +38,9 @@
     <AssemblyOriginatorKeyFile>BizTalkComponents.HttpXmlValidator.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BizTalkComponents.Utils">
-      <HintPath>..\..\packages\BizTalkComponents.Utils.2.0.0.1\lib\net40\BizTalkComponents.Utils.dll</HintPath>
+    <Reference Include="BizTalkComponents.Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\BizTalkComponents.Utils.2.0.0.3\lib\net40\BizTalkComponents.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.BizTalk.Component.Utilities, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.BizTalk.Pipeline, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
