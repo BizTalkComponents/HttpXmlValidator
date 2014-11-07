@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using BizTalkComponents.Utils;
 using BizTalkComponents.Utils.ContextExtensions;
@@ -20,7 +21,37 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
         {
+            object isRequestResponse;
+            object epmRRCorrelationToken;
+            object correlationToken;
+            object reqRespTransmitPipelineID;
+
+            if (!pInMsg.Context.TryRead(new ContextProperty(SystemProperties.IsRequestResponse),
+                    out isRequestResponse))
+            {
+                throw new InvalidOperationException("This component can only be used on request response ports.");
+            }
+
+            if (!pInMsg.Context.TryRead(new ContextProperty(SystemProperties.EpmRRCorrelationToken),
+                    out epmRRCorrelationToken))
+            {
+                throw new InvalidOperationException("The request message is missing it's correlation token");
+            }
+
+            if (!pInMsg.Context.TryRead(new ContextProperty(SystemProperties.CorrelationToken),
+                   out correlationToken))
+            {
+                throw new InvalidOperationException("The request message is missing it's correlation token");
+            }
+
+            if (!pInMsg.Context.TryRead(new ContextProperty(SystemProperties.ReqRespTransmitPipelineID),
+                   out reqRespTransmitPipelineID))
+            {
+                throw new InvalidOperationException("The request is missing the context property ReqRespTransmitPipelineID");
+            }
+
             var validator = new XmlValidator { RecoverableInterchangeProcessing = RecoverableInterchangeProcessing };
+
 
             try
             {
@@ -28,19 +59,33 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
             }
             catch (XmlValidatorException ex)
             {
-                pInMsg.Context.Promote(new ContextProperty(SystemProperties.RouteDirectToTP), true);
-                pInMsg.Context.Write(new ContextProperty(WCFProperties.OutboundHttpStatusCode), "400");
-
-                var ms = new MemoryStream();
-                var sw = new StreamWriter(ms);
-                sw.Write(GetExceptionDetails(ex));
-                sw.Flush();
-                ms.Seek(0, SeekOrigin.Begin);
-
-                pInMsg.BodyPart.Data = ms;
+                pInMsg = GetValidationErrorResponse(pContext, pInMsg, epmRRCorrelationToken, correlationToken, reqRespTransmitPipelineID, ex);
             }
 
             return pInMsg;
+        }
+
+        private IBaseMessage GetValidationErrorResponse(IPipelineContext pContext, IBaseMessage pInMsg, object epmRRCorrelationToken, object correlationToken, object reqRespTransmitPipelineID, XmlValidatorException ex)
+        {
+            var outMsg = pContext.GetMessageFactory().CreateMessage();
+            outMsg.AddPart("Body", pInMsg.BodyPart, true);
+
+            outMsg.Context.Promote(new ContextProperty(SystemProperties.RouteDirectToTP), true);
+            outMsg.Context.Write(new ContextProperty(WCFProperties.OutboundHttpStatusCode), "400");
+            outMsg.Context.Promote(new ContextProperty(SystemProperties.IsRequestResponse), true);
+            outMsg.Context.Promote(new ContextProperty(SystemProperties.EpmRRCorrelationToken), epmRRCorrelationToken);
+            outMsg.Context.Promote(new ContextProperty(SystemProperties.CorrelationToken), correlationToken);
+            outMsg.Context.Promote(new ContextProperty(SystemProperties.ReqRespTransmitPipelineID), reqRespTransmitPipelineID);
+
+            var ms = new MemoryStream();
+            var sw = new StreamWriter(ms);
+            sw.Write(GetExceptionDetails(ex));
+            sw.Flush();
+            ms.Seek(0, SeekOrigin.Begin);
+
+            outMsg.BodyPart.Data = ms;
+
+            return outMsg;
         }
 
         private string GetExceptionDetails(XmlValidatorException ex)
