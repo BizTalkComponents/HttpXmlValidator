@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>BizTalkComponents.HttpXmlValidator</id>
-    <version>1.0.0.5</version>
+    <id>BizTalkComponents.PipelineComponents.HttpXmlValidator</id>
+    <version>1.0.0.0</version>
     <authors>Robin Hultman</authors>
     <owners>ibizsolutions</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
