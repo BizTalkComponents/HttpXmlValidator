@@ -15,6 +15,7 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 
         public IEnumerator Validate(object projectSystem)
         {
+            //Nothing to validate at design time.
             return null;
         }
 
