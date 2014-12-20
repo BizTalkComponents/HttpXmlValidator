@@ -12,7 +12,7 @@ namespace BizTalkComponents.HttpXmlValidator.Tests.UnitTests
     [Schema(@"http://BizTalk_Server_Project3.TestSchema", @"Test")]
     [System.SerializableAttribute()]
     [SchemaRoots(new string[] { @"Test" })]
-    public sealed class TestSchema : Microsoft.XLANGs.BaseTypes.SchemaBase
+    public sealed class TestSchema : Microsoft.BizTalk.TestTools.Schema.TestableSchemaBase
     {
 
         [System.NonSerializedAttribute()]
