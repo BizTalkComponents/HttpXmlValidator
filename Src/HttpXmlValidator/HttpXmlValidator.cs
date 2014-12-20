@@ -1,12 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using BizTalkComponents.Utils;
-using BizTalkComponents.Utils.ContextExtensions;
 using Microsoft.BizTalk.Component;
 using Microsoft.BizTalk.Component.Interop;
 using Microsoft.BizTalk.Message.Interop;
-using Microsoft.BizTalk.Streaming;
+using IComponent = Microsoft.BizTalk.Component.Interop.IComponent;
 
 namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
 {
@@ -17,6 +17,9 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
     {
         private const string RecoverableInterchangeProcessingPropertyName = "RecoverableInterchangeProcessing";
 
+
+        [DisplayName("Recoverabl eInterchange Processing")]
+        [Description("http://msdn.microsoft.com/en-us/library/dd224149.aspx")]
         public bool RecoverableInterchangeProcessing { get; set; }
 
         public IBaseMessage Execute(IPipelineContext pContext, IBaseMessage pInMsg)
