@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2FEE70
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizTalkComponents.HttpXmlValidator.Tests.UnitTests", "Tests\UnitTests\BizTalkComponents.HttpXmlValidator.Tests.UnitTests.csproj", "{466DBAEA-6DB9-4946-BC69-F9FCDC3D359A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizTalkComponents.PipelineComponents.HttpXmlValidator.Tests.UnitTests", "Tests\UnitTests\BizTalkComponents.PipelineComponents.HttpXmlValidator.Tests.UnitTests.csproj", "{466DBAEA-6DB9-4946-BC69-F9FCDC3D359A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{81049E11-97B3-4574-9B81-75A28F3FC0DF}"
 	ProjectSection(SolutionItems) = preProject

@@ -1,10 +1,7 @@
 ﻿using Microsoft.XLANGs.BaseTypes;
 
-namespace BizTalkComponents.HttpXmlValidator.Tests.UnitTests
+namespace BizTalkComponents.PipelineComponents.HttpXmlValidator.Tests.UnitTests
 {
-    using Microsoft.XLANGs.BaseTypes;
-
-
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.BizTalk.Schema.Compiler", "3.0.1.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
