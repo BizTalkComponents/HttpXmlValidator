@@ -1,11 +1,10 @@
 ﻿using System;
 using System.IO;
+using BizTalkComponents.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Winterdom.BizTalk.PipelineTesting;
-using BizTalkComponents.Utils;
-using  ContextProperty = BizTalkComponents.Utils.ContextProperty;
 
-namespace BizTalkComponents.HttpXmlValidator.Tests.UnitTests
+namespace BizTalkComponents.PipelineComponents.HttpXmlValidator.Tests.UnitTests
 {
     [TestClass]
     public class HttpXmlValidatorTests
