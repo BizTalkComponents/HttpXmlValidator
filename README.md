@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/github/BizTalkComponents/HttpXmlValidator?branch=master)](https://ci.appveyor.com/api/projects/status/github/BizTalkComponents/HttpXmlValidator/branch/master)
