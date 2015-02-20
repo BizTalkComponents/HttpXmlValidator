@@ -18,7 +18,7 @@ namespace BizTalkComponents.PipelineComponents.HttpXmlValidator
         private const string RecoverableInterchangeProcessingPropertyName = "RecoverableInterchangeProcessing";
 
 
-        [DisplayName("Recoverabl eInterchange Processing")]
+        [DisplayName("Recoverable Interchange Processing")]
         [Description("http://msdn.microsoft.com/en-us/library/dd224149.aspx")]
         public bool RecoverableInterchangeProcessing { get; set; }
 
