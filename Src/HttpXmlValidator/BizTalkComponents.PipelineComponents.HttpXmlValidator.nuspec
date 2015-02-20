@@ -6,7 +6,7 @@
     <authors>Robin Hultman</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://github.com/BizTalkComponents/HttpXmlValidator</projectUrl>
-    <description>PipelineComponent that validates incomming XML against a schema and returns HTTP 400 if it is not valid.</description>
+    <description>PipelineComponent that validates incoming XML against a schema and returns HTTP 400 if it is not valid.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>BizTalk</tags>
